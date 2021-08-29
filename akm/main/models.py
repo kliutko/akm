@@ -12,10 +12,10 @@ class Feedback(models.Model):
 
     )
 
-    name = models.CharField('', max_length=20)
+    name = models.CharField('Имя', max_length=20)
     email = models.EmailField('Почта')
     message = models.TextField('Сообщение')
-    citi = models.CharField('Город', ma_lenght=2, choices=CITY_CHOICES)
+    citi = models.CharField('Город', max_lenght=20, choices=CITY_CHOICES)
 
     class Meta:
         verbose_name = 'Отзыв'
