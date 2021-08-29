@@ -4,18 +4,18 @@ from django.db import models
 class Feedback(models.Model):
     CITY_CHOICES = (
         ('minsk', 'Минск'),
-        ('minsk', 'Минск'),
-        ('minsk', 'Минск'),
-        ('minsk', 'Минск'),
-        ('minsk', 'Минск'),
-        ('minsk', 'Минск')
+        ('brest', 'Брест'),
+        ('grodno', 'Гродно'),
+        ('vitebsk', 'Витебск'),
+        ('mogilev', 'Могилев'),
+        ('gomel', 'Гомель')
 
     )
 
     name = models.CharField('Имя', max_length=20)
-    email = models.EmailField('Почта')
+    email = models.EmailField('Почта', help_text='Только почта Яндекса')
     message = models.TextField('Сообщение')
-    citi = models.CharField('Город', max_lenght=20, choices=CITY_CHOICES)
+    city = models.CharField('Город', max_length=20, choices=CITY_CHOICES)
 
     class Meta:
         verbose_name = 'Отзыв'

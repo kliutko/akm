@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Главная Страница</h1>
+{% for feedback in feedbacks %}
+<h1>{{ feedback.name }}</h1><br>
+{{ feedback.message }}
+{% endfor %}
+<form method="post">
+    {% csrf_token %}
+    {{ form.name }}
+    {{ form.email }}
+    {{ form.city }}
+    {{ form.message }}
+    <button type="submit" name="button">Отправить</button>
+</form>
+
+</body>
+</html>
