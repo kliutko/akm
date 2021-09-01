@@ -24,3 +24,14 @@ class Feedback(models.Model):
 
     def __str__(self):
         return self.email
+class News(models.Model):
+
+    title = models.CharField('Заголовок', max_length=100)
+    text = models.TextField('Текст новости')
+
+    class Meta:
+        verbose_name = 'Новость'
+        verbose_name_plural = 'Новости'
+
+    def __str__(self):
+        return self.title
