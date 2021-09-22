@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+</body>
+</html>
+
+{% extends 'main/base.html' %}
+{% block title %} Контакт {% endblock %}
+{% block content %}
+<!--Start user account-->
+{% if user.is_authenticated %}
+<p>Welcome, {{ user.username }}. Thanks for logging in.</p>
+
+    <div class="site-section bg-light">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 col-lg-8 mb-5">
+           <form action="#" class="p-5 bg-white" method="post">
+            {% csrf_token %}
+            {{ error_form }}
+
+              <div class="row form-group">
+                <div class="col-md-12 mb-3 mb-md-0">
+                  {% for item in serviceform %}<br>
+                  <label class="font-weight-bold" >{{ item.label }}</label>
+                  <br>{{ item }}
+                  {% endfor %}
+                </div>
+              </div>
+              <div class="row form-group">
+                <div class="col-md-12">
+                  <input type="submit" value="Отправить" class="btn btn-primary">
+                </div>
+              </div>
+            </form>
+              <br>
+              {% if user.username_id == profile_id %}
+              {% for item in service %}
+              {{ item.name_subject }}
+              {{ item.title }}
+              {{ item.message }}
+                {% for i in profile %}
+                    {{ i.last_name }}
+                {% endfor %}
+              {{ item.status.status }}
+              {{ item.time_create }}
+
+              {% endfor %}
+            {% endif %}
+          </div>
+
+          <div class="col-lg-4">
+            <div class="p-4 mb-3 bg-white">
+                {% for item in profile %}
+              <h3 class="h5 text-black mb-3">{{ item.last_name }} {{ item.first_name }}</h3>
+              <p class="mb-0 font-weight-bold">{{ item.tel }}</p>
+              <p class="mb-4">{{ subtitle_1_block_right }}</p>
+
+              <p class="mb-0 font-weight-bold">{{ title_2_block_right }}</p>
+              <p class="mb-4"><a href="#">{{ subtitle_2_block_right }}</a></p>
+
+              <p class="mb-0 font-weight-bold">{{ title_3_block_right }}</p>
+              <p class="mb-0"><a href="#">{{ subtitle_3_block_right }}</a></p>
+                    {% endfor %}
+            </div>
+
+
+            <div class="p-4 mb-3 bg-white">
+              <h3 class="h5 text-black mb-3">{{ title_block_2 }}</h3>
+              <p>{{ subtitle_block_2 }}</p>
+              <p><a href="{{ url_block_2 }}" class="btn btn-primary px-4 py-2 text-white">{{ btn_block_2 }}</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+<!--/Start user account-->
+{% else %}
+
+<!--If user not authefication-->
+    <p>Welcome, new user. Please log in.</p>
+<!--/If user not authefication-->
+{% endif %}
+{% endblock %}

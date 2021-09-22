@@ -1,0 +1,55 @@
+{% extends 'main/base.html' %}
+{% block title %} Контакт {% endblock %}
+{% block content %}
+
+    <div class="site-blocks-cover inner-page overlay" style="background-image: url({{ image_header }});" data-aos="fade" data-stellar-background-ratio="0.5">
+      <div class="container">
+        <div class="row align-items-center justify-content-center">
+          <div class="col-md-7 text-center">
+            <h1 class="mb-5">{{ title_feedback  }} <strong>{{ subtitle_feedback }}</strong></h1>
+          </div>
+        </div>
+      </div>
+    </div>  
+
+    <div class="site-section bg-light">
+      <div class="container">
+        <div class="row">
+       
+          <div class="col-md-12 col-lg-8 mb-5">
+          
+            
+          
+          <div style="position:relative;overflow:hidden;"><a href="https://yandex.by/maps?utm_medium=mapframe&utm_source=maps" style="color:#eee;font-size:12px;position:absolute;top:0px;">Яндекс.Карты</a><a href="https://yandex.by/maps/29632/brest-district/geo/3591008226/?ll=24.242161%2C52.048437&source=wizgeo&utm_medium=mapframe&utm_source=maps&z=17" style="color:#eee;font-size:12px;position:absolute;top:14px;">Луговая улица</a><iframe src="https://yandex.by/map-widget/v1/-/CCUmrGdogA" width="560" height="400" frameborder="1" allowfullscreen="true" style="position:relative;"></iframe></div>
+
+          </div>
+
+          <div class="col-lg-4">
+            <div class="p-4 mb-3 bg-white">
+              <h3 class="h5 text-black mb-3">{{ header_block_right }}</h3>
+              <p class="mb-0 font-weight-bold">{{ title_1_block_right }}</p>
+              <p class="mb-4">{{ subtitle_1_block_right }}</p>
+
+              <p class="mb-0 font-weight-bold">{{ title_2_block_right }}</p>
+              <p class="mb-4"><a href="#">{{ subtitle_2_block_right }}</a></p>
+
+              <p class="mb-0 font-weight-bold">{{ title_3_block_right }}</p>
+              <p class="mb-0"><a href="#">{{ subtitle_3_block_right }}</a></p>
+
+            </div>
+
+            
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="promo py-5 bg-primary" data-aos="fade">
+      <div class="container text-center">
+        <h2 class="d-block mb-0 font-weight-light text-white"><a href="{{ url_visitinoffice }}" class="text-white d-block">{{ block_visitinoffice }}</a></h2>
+      </div>
+    </div>
+    
+{% endblock %}
