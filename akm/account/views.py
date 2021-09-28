@@ -25,8 +25,12 @@ def account(request):
     subject = Subject.objects.all()
     service = Service.objects.all()
     serviceform = ServiceForm()
+    subjectform = SubjectForm()
+    entityform = EntityForm()
 
     data = {
+        'entityform': entityform,
+        'subjectform': subjectform,
         'serviceform': serviceform,
         'error_form': error_form,
         'role': role,

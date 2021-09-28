@@ -21,6 +21,7 @@ class Profile(models.Model):
     post = models.CharField('Должность', max_length=100, blank=True)
     tel = PhoneNumberField(verbose_name='Контактный телефон', blank=True)
     email = models.EmailField('Email', max_length=100, blank=True)
+
     class Meta:
         verbose_name = 'Профиль'
         verbose_name_plural = 'Профили'
@@ -72,6 +73,7 @@ class Service(models.Model):
     time_create = models.DateTimeField('Дата подачи заявки', auto_now_add=True)
     time_update = models.DateTimeField('Дата последнего изменения заявки', auto_now=True)
     login = models.OneToOneField(Profile, on_delete=models.CASCADE, primary_key=True)
+    id_usr = models.OneToOneField(User, on_delete=models.CASCADE)
     class Meta:
         verbose_name = 'Заявка'
         verbose_name_plural = 'Заявки'

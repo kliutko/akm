@@ -37,10 +37,11 @@ def index(request):
         'name_site': 'Название сайта',
         'email_header': 'Почта',
         'phoneheader': 'Телефон',
-        'fb_url': 'Ссылка на facebook',
-        'tw_url': 'Ссылка на twitter',
+        'tg_url': 'Ссылка на telegram',    # social iconus header
+        'fb_url': 'Ссылка на FaceBook',
+        'vk_url': 'Ссылка на Vk',
         'ld_url': 'Ссылка на linkedin',
-        'inst_url': 'Ссылка на instagram',
+        'inst_url': 'Ссылка на instagram',  # /social iconus header
         'title_main': 'Специальная технология',             # title in string main
         'subtitle_main': 'Обработки металла',        # subtitle us string main
         'image_header': '/static/images/hero_bg_2.jpg',     # image us main

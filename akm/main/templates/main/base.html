@@ -44,8 +44,9 @@
         <div class="container py-2">
           <div class="row align-items-center">
             <div class="col-6">
-              <a href="{{ tw_url }}" class="p-2 pl-0"><span class="icon-twitter"></span></a>
+              <a href="{{ tg_url }}" class="p-2 pl-0"><span class="icon-telegram"></span></a>
               <a href="{{ fb_url }}" class="p-2 pl-0"><span class="icon-facebook"></span></a>
+              <a href="{{ vk_url }}" class="p-2 pl-0"><span class="icon-vk"></span></a>
               <a href="{{ ld_url }}" class="p-2 pl-0"><span class="icon-linkedin"></span></a>
               <a href="{{ inst_url }}" class="p-2 pl-0"><span class="icon-instagram"></span></a>
             </div>
@@ -102,7 +103,7 @@
                       </ul>
                     </li>
                     <li><a href="{% url 'news' %}">News</a></li>
-                    <li><a href="services.html">Services</a></li>
+                    <li><a href="#">Services</a></li>
                     <li><a href="{% url 'feedback' %}">Contact</a></li> ||
                     {% if request.user.is_authenticated %}
                     <li class="dropdown arrow-top"><a href="{% url 'account' %}">{{ user.username }}</a> | <a href="{% url 'logout' %}">Выйти</a></li>

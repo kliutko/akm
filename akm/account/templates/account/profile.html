@@ -16,7 +16,13 @@
 <!--Start user account-->
 {% if user.is_authenticated %}
 <p>Welcome, {{ user.username }}. Thanks for logging in.</p>
+<form action="#" class="p-5 bg-white" method="post">
+<div class="col-md-12">
 
+
+
+                </div>
+</form>
     <div class="site-section bg-light">
       <div class="container">
         <div class="row">
@@ -25,12 +31,26 @@
             {% csrf_token %}
             {{ error_form }}
 
+
               <div class="row form-group">
                 <div class="col-md-12 mb-3 mb-md-0">
-                  {% for item in serviceform %}<br>
-                  <label class="font-weight-bold" >{{ item.label }}</label>
-                  <br>{{ item }}
-                  {% endfor %}
+
+
+                    {% for item in subjectform %}
+                    {{ item.name_subject }}
+                    {% endfor %}
+                    {% for i in subject %}
+                    {% if i == subject.name_entity %}
+                     {{ i.name_subject }}
+                    {% endif %}
+                    {% endfor %}
+
+
+
+                      {% for item in serviceform %}<br>
+                      <label class="font-weight-bold" >{{ item.label }}</label>
+                      <br>{{ item }}
+                      {% endfor %}
                 </div>
               </div>
               <div class="row form-group">
@@ -41,17 +61,10 @@
             </form>
               <br>
               {% if user.username_id == profile_id %}
-              {% for item in service %}
-              {{ item.name_subject }}
-              {{ item.title }}
-              {{ item.message }}
-                {% for i in profile %}
-                    {{ i.last_name }}
-                {% endfor %}
-              {{ item.status.status }}
-              {{ item.time_create }}
 
-              {% endfor %}
+
+
+
             {% endif %}
           </div>
 
@@ -60,6 +73,10 @@
                 {% for item in profile %}
               <h3 class="h5 text-black mb-3">{{ item.last_name }} {{ item.first_name }}</h3>
               <p class="mb-0 font-weight-bold">{{ item.tel }}</p>
+                {{ item.login }}
+                {{ user.User }}
+
+
               <p class="mb-4">{{ subtitle_1_block_right }}</p>
 
               <p class="mb-0 font-weight-bold">{{ title_2_block_right }}</p>

@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'phonenumber_field',
     'main',
-    'about',
+    'about.apps.AboutConfig',
     'news.apps.NewsConfig',
     'feedback',
     'account',
@@ -62,7 +62,7 @@ ROOT_URLCONF = 'akm.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

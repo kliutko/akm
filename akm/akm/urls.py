@@ -11,6 +11,7 @@ urlpatterns = [
     path('news/', include('news.urls')),
     path('contact/', include('feedback.urls')),
     path('account/', include('account.urls')),
+    path('about/', include('about.urls')),
 
 
 
