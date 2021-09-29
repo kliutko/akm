@@ -21,16 +21,21 @@
             <h2 class="display-4 text-black mb-5">{{ leadership }}</h2>
           </div>
         </div>
+        {% for a in port1 %}
+
+
+          {% if category.slug == cat_selected %}
+
         <div class="row">
-          {% for i in portfolio %}
-          {% if i.id ==  %}
+
           <div class="col-md-6 pr-md-5 text-left mb-5">
             <div>
-              <img src="/{{ i.avatar }}" alt="Image" class="w-50 mb-5 rounded">
-              <h3>{{ i.lname }} {{ i.fname }}</h3>
-              <h5>{{ i.post }}</h5>
-              <p class="lead">{{ i.message|truncatewords:40 }}</p>
-              <p><a href="{{ i.get_absolute_url }}" class="btn btn-outline-primary btn-sm rounded-0 p-2 px-4">Читать далее</a></p>
+
+              <img src="{{ a.avatar }}" alt="Image" class="w-50 mb-5 rounded">
+              <h3>{{ a.lname }} {{ a.fname }}</h3>
+              <h5>{{ a.post }}</h5>
+              <p class="lead">{{ a.message|truncatewords:40 }}</p>
+              <p><a href="{{ get_absolute_url }}" class="btn btn-outline-primary btn-sm rounded-0 p-2 px-4">Читать далее</a></p>
 
               <p class="mt-5">
                 <a href="#" class="py-4 pl-0 pr-2"><span class="icon-facebook"></span></a>
@@ -41,8 +46,12 @@
               </p>
             </div>
           </div>
-          {% endif %}
-          {% endfor %}
+
+            {% endif %}
+
+            {% endfor %}
+
+
 
 
              </div>

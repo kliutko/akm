@@ -188,8 +188,8 @@
                 <img src="{{ item.avatar }}" alt="Image placeholder" class="img-fluid">
               </div>
               <blockquote class="block-47-quote">
-                <p>{{ item.message|truncatewords:10 }}</p>
-                <cite class="block-47-quote-author">&mdash; {{ item.lname}}{{ item.fname }}, {{ item.post }} <a href="#">XYZ Inc.</a></cite>
+                <p>{{ item.message|truncatewords:20 }}</p>
+                <cite class="block-47-quote-author">&mdash; {{ item.lname}}{{ item.fname }}, <a href="{{ item.get_absolute_url }}">{{ item.post }}</a></cite>
               </blockquote>
             </div>
           </div>

@@ -95,16 +95,26 @@
                       </ul>
                     </li>
                     <li class="has-children">
-                      <a href="{% url 'about' %}">Company</a>
-                      <ul class="dropdown arrow-top">
-                        <li><a href="#">Menu One</a></li>
-                        <li><a href="#">Menu Two</a></li>
-                        <li><a href="#">Menu Three</a></li>
-                      </ul>
+                      <a href="{% url 'about' %}">О компании</a>
+<!--                      <ul class="dropdown arrow-top">-->
+<!--                        <li><a href="#">Menu One</a></li>-->
+<!--                        <li><a href="#">Menu Two</a></li>-->
+<!--                        <li><a href="#">Menu Three</a></li>-->
+
+<!--                        <li class="has-children">-->
+<!--                          <a href="about/cat/">Сотрудники</a>-->
+<!--                          <ul class="dropdown">-->
+<!--                          {% for i in category_portfolio %}-->
+<!--                            <li><a href="about/cat/{{ i.slug }}">{{ i.name }}</a></li>-->
+<!--                          {% endfor %}-->
+<!--                        </ul>-->
+<!--                        </li>-->
+
+<!--                      </ul>-->
                     </li>
-                    <li><a href="{% url 'news' %}">News</a></li>
-                    <li><a href="#">Services</a></li>
-                    <li><a href="{% url 'feedback' %}">Contact</a></li> ||
+                    <li><a href="{% url 'news' %}">Новости</a></li>
+<!--                    <li><a href="#">Services</a></li>-->
+                    <li><a href="{% url 'feedback' %}">Обратная связь</a></li> ||
                     {% if request.user.is_authenticated %}
                     <li class="dropdown arrow-top"><a href="{% url 'account' %}">{{ user.username }}</a> | <a href="{% url 'logout' %}">Выйти</a></li>
                     {% else %}

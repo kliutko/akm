@@ -6,7 +6,13 @@ def about(request):
     portfolio = Portfolio.objects.all()
     data = {
         'portfolio': portfolio,
-
+        'block_1_title': 'Мы предостовляем',     #block_1 uslugi
+        'block_1_subtitle': 'услуги:',
+        'block_1_message': '',     #/block_1 uslugi
+        'block_2_title': 'История Нашей',     #block_2 history
+        'block_2_subtitle': 'Компании',
+        'block_2_history_title':'История началась в 2001 году',
+        'block_2_history_message': ' с того что один целеустремленный человек впервые взял в руки кусок меттала и приступил к его обработке ',     #/block_2 history
         'ids_news': '2',     # id for displaying the news on the main page
         'name_site': 'Название сайта',
         'email_header': 'Почта',
@@ -99,10 +105,15 @@ def show_portfolio(request, portfolio_slug):
 
 def show_category_portfolio(request, category_slug):
     category = get_object_or_404(Category_Portfolio, slug=category_slug)
-    portfolio = Portfolio.objects.all()
+    port = Portfolio.objects.filter(slug=category_slug)
+    port1 = Portfolio.objects.all()
+    cats = Category_Portfolio.objects.all()
     data = {
-        'portfolio': portfolio,
+        'port': port,
         'category': category,
+        'cats': cats,
+        'cat_selected': category_slug,
+        'port1': port1,
         'ids_news': '2',  # id for displaying the news on the main page
         'name_site': 'Название сайта',
         'email_header': 'Почта',

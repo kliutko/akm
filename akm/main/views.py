@@ -24,6 +24,7 @@ def index(request):
 
     news = News.objects.all()
     portfolio = Portfolio.objects.all()
+    category_portfolio = Category_Portfolio.objects.all()
     # specialty = Specialty.objects.all()
     #
     # form = FeedbackForm()
@@ -31,8 +32,10 @@ def index(request):
     data = {
         # 'form' : form,
         # 'specialty': specialty,
+
         'news': news,
         'portfolio': portfolio,
+        'category_portfolio': category_portfolio,
         'ids_news': '2',   # id for displaying the news on the main page
         'name_site': 'Название сайта',
         'email_header': 'Почта',
@@ -42,8 +45,8 @@ def index(request):
         'vk_url': 'Ссылка на Vk',
         'ld_url': 'Ссылка на linkedin',
         'inst_url': 'Ссылка на instagram',  # /social iconus header
-        'title_main': 'Специальная технология',             # title in string main
-        'subtitle_main': 'Обработки металла',        # subtitle us string main
+        'title_main': 'Компания',             # title in string main
+        'subtitle_main': 'АРМКРАФТМЕТАЛЛ',        # subtitle us string main
         'image_header': '/static/images/hero_bg_2.jpg',     # image us main
         'text_button_1': 'Download',
         'link_button_1': '#',
@@ -78,10 +81,10 @@ def index(request):
         'main_title_specialty': 'Наши Специальности',
         'main_subtitle_specialty': 'Подзаголовок о наших специальностях, Подзаголовок о наших специальностях, Подзаголовок о наших специальностях ',
         'block_speciality_id': int(2),     #
-        'block_speciality_id_1': int(11),  #вывод первой новость ( id новости )
-        'block_speciality_id_2': int(12),  #вывод второй новость ( id новости )
-        'block_speciality_id_3': int(13),  #вывод третьей новость ( id новости )
-        'block_speciality_id_4': int(14),  #вывод четвертой новость ( id новости )
+        'block_speciality_id_1': int(4),  #вывод первой новость ( id новости )
+        'block_speciality_id_2': int(5),  #вывод второй новость ( id новости )
+        'block_speciality_id_3': int(6),  #вывод третьей новость ( id новости )
+        'block_speciality_id_4': int(7),  #вывод четвертой новость ( id новости )
         'block_news_id': int(2),  # вывод новости  ( id новости ) в блоке news
         'block_news_id_2': int(3),  # вывод новости  ( id новости ) в блоке news2
 
