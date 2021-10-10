@@ -2,9 +2,11 @@ from django.db import models
 from django.urls import reverse
 from phonenumber_field.modelfields import PhoneNumberField
 
+
 # Create your models here.
 class About(models.Model):
     pass
+
 
 class Category_Portfolio(models.Model):
     name = models.CharField('Наименование должности', max_length=100)
@@ -14,13 +16,15 @@ class Category_Portfolio(models.Model):
     class Meta:
         verbose_name = 'Должность'
         verbose_name_plural = 'Должности'
+
     def __str__(self):
         return self.name
+
     def get_absolute_url(self):
         return reverse('show_category_portfolio', kwargs={'category_slug': self.slug})
 
-class Portfolio(models.Model):
 
+class Portfolio(models.Model):
     post = models.ForeignKey('Category_Portfolio', verbose_name='Должность', on_delete=models.PROTECT)
     avatar = models.ImageField('Аватарка', upload_to='static/images/portfolio/%Y/%m/%d/')
     lname = models.CharField('Имя', max_length=20, default='')
@@ -34,8 +38,10 @@ class Portfolio(models.Model):
     class Meta:
         verbose_name = 'Портфолио'
         verbose_name_plural = 'Потфолио'
+
     def __str__(self):
         return f'{self.lname} {self.fname}'
+
     def get_absolute_url(self):
         return reverse('show_portfolio', kwargs={'portfolio_slug': self.slug})
 
@@ -52,4 +58,3 @@ class Portfolio(models.Model):
 #
 #     def __str__(self):
 #         return self.title
-

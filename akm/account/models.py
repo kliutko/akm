@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 from phonenumber_field.modelfields import PhoneNumberField
 from django.contrib.auth.models import User
 # Create your models here.
@@ -8,6 +9,7 @@ class Role(models.Model):
     class Meta:
         verbose_name = 'Роль'
         verbose_name_plural = 'Роли'
+
 
     def __str__(self):
         return self.name_role
@@ -21,12 +23,16 @@ class Profile(models.Model):
     post = models.CharField('Должность', max_length=100, blank=True)
     tel = PhoneNumberField(verbose_name='Контактный телефон', blank=True)
     email = models.EmailField('Email', max_length=100, blank=True)
+    slug = models.SlugField(verbose_name='URL', unique=True, db_index=True, max_length=220)
 
     class Meta:
         verbose_name = 'Профиль'
         verbose_name_plural = 'Профили'
     def __str__(self):
         return f'{self.last_name} {self.first_name}'
+
+    def get_absolute_url(self):
+        return reverse('account', kwargs={'acc_slug': self.slug})
 
 class Entity(models.Model):
     name = models.CharField('Организация', max_length=50)
@@ -73,7 +79,7 @@ class Service(models.Model):
     time_create = models.DateTimeField('Дата подачи заявки', auto_now_add=True)
     time_update = models.DateTimeField('Дата последнего изменения заявки', auto_now=True)
     login = models.OneToOneField(Profile, on_delete=models.CASCADE, primary_key=True)
-    id_usr = models.OneToOneField(User, on_delete=models.CASCADE)
+    #id_user = models.ForeignKey(User, on_delete=models.CASCADE)
     class Meta:
         verbose_name = 'Заявка'
         verbose_name_plural = 'Заявки'

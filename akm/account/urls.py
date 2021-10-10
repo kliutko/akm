@@ -4,7 +4,7 @@ from .views import *
 
 
 urlpatterns = [
-    path('', account, name='account'),
+    path('<slug:acc_slug>/', Account.as_view(), name='account'),
 
 
 ]

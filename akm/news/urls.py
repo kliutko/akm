@@ -5,7 +5,7 @@ from about.views import *
 
 urlpatterns = [
     path('', news, name='news'),
- #   path('/<slug:category_slug>/', show_categori, name='categori'),
+    # path('cat/<slug:category_slug>/', show_categori, name='categori'),
     path('<slug:news_slug>/', show_news, name='news')
 
 

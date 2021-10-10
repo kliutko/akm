@@ -1,3 +1,4 @@
+from django.contrib.sites import requests
 from django.shortcuts import render
 from django.shortcuts import redirect
 from .forms import *
@@ -5,12 +6,32 @@ from .forms import *
 from .models import *
 
 # Create your views here.
+def send_telegram(text: str):
+    token = '2018618673:AAFeAMB9pYqGNAOZpwhd57MsYvtSe_byLWQ'
+    url = 'https://api.telegram.org/bot'
+    channel_id = '-586479976'
+    url += token
+    method = url + '/sendmessage'
+
+    r = requests.post(method, data={
+        'chat_id': channel_id,
+        'text': text,
+    })
+    if r.status_code != 200:
+        raise Exception('Post_text_error')
+
+
+if __name__ == '__main__':
+    send_telegram('hello world')
+
 def feedback(request):
     error_form = ''
     if request.method == 'POST':
         form = FeedbackForm(request.POST)
         if form.is_valid():
             form.save()
+
+
             return redirect('feedback')
         else:
             error_form = 'Введены неверные данные!'

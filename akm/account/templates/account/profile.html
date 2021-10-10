@@ -36,17 +36,6 @@
                 <div class="col-md-12 mb-3 mb-md-0">
 
 
-                    {% for item in subjectform %}
-                    {{ item.name_subject }}
-                    {% endfor %}
-                    {% for i in subject %}
-                    {% if i == subject.name_entity %}
-                     {{ i.name_subject }}
-                    {% endif %}
-                    {% endfor %}
-
-
-
                       {% for item in serviceform %}<br>
                       <label class="font-weight-bold" >{{ item.label }}</label>
                       <br>{{ item }}
@@ -60,12 +49,12 @@
               </div>
             </form>
               <br>
-              {% if user.username_id == profile_id %}
+<!--              {% if user.username_id == profile_id %}-->
 
 
 
 
-            {% endif %}
+<!--            {% endif %}-->
           </div>
 
           <div class="col-lg-4">

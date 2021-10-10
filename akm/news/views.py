@@ -1,33 +1,32 @@
-from django.shortcuts import render, get_object_or_404
+from urllib import request
 from .models import *
+from django.template import RequestContext
+from django.shortcuts import render, get_object_or_404
+from django.views.generic import ListView
+
+
 
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
-from django.template import RequestContext
+
 
 # Create your views here.
+
+
+
 def news(request):
     '''Show all news'''
     news_list = News.objects.filter(is_published=True).order_by('-time_create')
-
-
     paginator = Paginator(news_list, 3)
     page = request.GET.get('page')
-
     try:
         news = paginator.page(page)
     except PageNotAnInteger:
         news = paginator.page(1)
     except EmptyPage:
         news = paginator.page(paginator.num_pages)
-
-
-
-
     data = {
-
         'news': news,
-
         'ids_news': '2',  # id for displaying the news on the main page
         'name_site': 'Название сайта',
         'email_header': 'Почта',
@@ -59,10 +58,7 @@ def news(request):
         'block_0_adres_subtitle_2': '',
         'block_0_adres_subtitle_3': '',
         'block_0_adres_subtitle_4': '',  # /footer
-
-
     }
-
     return render(request, 'news/news.html', data)
 
 
@@ -72,7 +68,6 @@ def show_news(request, news_slug):
 
     data = {
         'post': post,
-
         'title': post.title,
         'ids_news': '2',  # id for displaying the news on the main page
         'name_site': 'Название сайта',
