@@ -78,7 +78,7 @@ def index(request):
         'block_0_adres_subtitle_2': '',
         'block_0_adres_subtitle_3': '',
         'block_0_adres_subtitle_4': '',                      #/footer
-        'main_title_specialty': 'Наши Специальности',
+        'main_title_specialty': 'Наша специализация',
         'main_subtitle_specialty': 'Подзаголовок о наших специальностях, Подзаголовок о наших специальностях, Подзаголовок о наших специальностях ',
         'block_speciality_id': int(2),     #
         'block_speciality_id_1': int(4),  #вывод первой новость ( id новости )
