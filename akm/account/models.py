@@ -17,19 +17,20 @@ class Role(models.Model):
 
 class Profile(models.Model):
     name_role = models.ForeignKey('Role', verbose_name='Роль', on_delete=models.CASCADE)
-    login = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
+    login = models.OneToOneField('auth.User', on_delete=models.CASCADE, primary_key=True)
     last_name = models.CharField('Имя', max_length=50)
     first_name = models.CharField('Фамилия', max_length=50, blank=True)
     post = models.CharField('Должность', max_length=100, blank=True)
     tel = PhoneNumberField(verbose_name='Контактный телефон', blank=True)
     email = models.EmailField('Email', max_length=100, blank=True)
     slug = models.SlugField(verbose_name='URL', unique=True, db_index=True, max_length=220)
+    image =  models.ImageField('Картинка', upload_to='static/images/avatars/%Y/%m/%d/')
 
     class Meta:
         verbose_name = 'Профиль'
         verbose_name_plural = 'Профили'
     def __str__(self):
-        return f'{self.last_name} {self.first_name}'
+        return f'{self.last_name}, {self.first_name}, {self.login}'
 
     def get_absolute_url(self):
         return reverse('account', kwargs={'acc_slug': self.slug})

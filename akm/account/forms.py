@@ -35,3 +35,8 @@ class ServiceForm(ModelForm):
 
 
         }
+class ProfileForm(forms.ModelForm):
+
+        class Meta:
+            model = Profile
+            fields = ['last_name', 'first_name', 'post', 'tel', 'email', 'image', 'login']

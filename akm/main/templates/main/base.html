@@ -116,7 +116,7 @@
 <!--                    <li><a href="#">Services</a></li>-->
                     <li><a href="{% url 'feedback' %}">Обратная связь</a></li> ||
                     {% if request.user.is_authenticated %}
-                    <li class="dropdown arrow-top"><a href="account/{{ user.username }}">{{ user.username }}</a> | <a href="{% url 'logout' %}">Выйти</a></li>
+                    <li class="dropdown arrow-top"><a href="/account/{{ user.username }}">{{ user.username }}</a> | <a href="{% url 'logout' %}">Выйти</a></li>
                     {% else %}
                     <li><a href="{% url 'register' %}">Регистрация</a></li> | <li><a href="{% url 'login' %}">Войти</a></li>
                     {% endif %}

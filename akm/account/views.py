@@ -1,6 +1,7 @@
-from django.contrib.sites import requests
-from django.shortcuts import render, redirect, get_object_or_404
-from django.views.generic import ListView
+
+
+
+from django.views.generic import ListView, UpdateView
 
 from .models import *
 from .forms import *
@@ -29,19 +30,45 @@ from .forms import *
 #     send_telegram('hello world')
 
 class Account(ListView):
-    model = Profile
+    model = Profile.objects.filter()
     template_name = 'account/profile.html'
     context_object_name = 'acc'
     # allow_empty = False
 
-    def get_context_data(self, *, object_list=None, **kwargs):
+    def get_context_data(self, *, object_list=None, obj=None, **kwargs):
+
         context = super().get_context_data(**kwargs)
         context['name_site'] = 'АКМ'
+
         return context
 
     def get_queryset(self):
         return Profile.objects.all()
 
+class AccountsUpdate(UpdateView):
+
+    form_class = ProfileForm
+    template_name = 'account/profile_update.html'
+    context_object_name = 'update'
+    success_url = 'updates'
+
+
+    def get_object(self, queryset=None):
+        return self.request.user
+
+    def form_valid(self, form):
+        # save cleaned post data
+        clean = form.cleaned_data
+        context = {}
+        self.object = context.save(clean)
+        return super(AccountsUpdate, self).form_valid(form)
+
+    def get_context_data(self, *, object_list=None, obj=None, **kwargs):
+
+        context = super().get_context_data(**kwargs)
+        context['name_site'] = 'АКМ'
+
+        return context
 
 
 
