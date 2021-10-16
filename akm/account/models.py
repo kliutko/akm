@@ -84,6 +84,5 @@ class Service(models.Model):
     class Meta:
         verbose_name = 'Заявка'
         verbose_name_plural = 'Заявки'
-
     def __str__(self):
         return f'{self.name_subject} - {self.title}'

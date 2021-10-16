@@ -1,13 +1,10 @@
-
-
-
+from django.core.exceptions import ImproperlyConfigured
+from django.http import Http404
+from django.shortcuts import redirect
 from django.views.generic import ListView, UpdateView
 
-from .models import *
+
 from .forms import *
-
-
-
 
 
 # Create your views here.
@@ -33,10 +30,10 @@ class Account(ListView):
     model = Profile.objects.filter()
     template_name = 'account/profile.html'
     context_object_name = 'acc'
+
     # allow_empty = False
 
     def get_context_data(self, *, object_list=None, obj=None, **kwargs):
-
         context = super().get_context_data(**kwargs)
         context['name_site'] = 'АКМ'
 
@@ -45,29 +42,23 @@ class Account(ListView):
     def get_queryset(self):
         return Profile.objects.all()
 
+
 class AccountsUpdate(UpdateView):
 
-    form_class = ProfileForm
-    template_name = 'account/profile_update.html'
+    model = Profile
+    fields = ['last_name', 'first_name']
+    template_name_suffix = '_update_form'
     context_object_name = 'update'
-    success_url = 'updates'
-
-
-    def get_object(self, queryset=None):
-        return self.request.user
+    template_name = 'account/profile_update.html'
 
     def form_valid(self, form):
-        # save cleaned post data
-        clean = form.cleaned_data
-        context = {}
-        self.object = context.save(clean)
-        return super(AccountsUpdate, self).form_valid(form)
+        """If the form is valid, save the associated model."""
+        self.object = form.save()
+        return super().form_valid(form)
 
     def get_context_data(self, *, object_list=None, obj=None, **kwargs):
-
         context = super().get_context_data(**kwargs)
         context['name_site'] = 'АКМ'
-
         return context
 
 
@@ -111,6 +102,5 @@ class AccountsUpdate(UpdateView):
     #     'block_0_adres_subtitle_4': '',  # /footer
     #
     # }
-
 
     # return render(request, 'account/profile.html', data)

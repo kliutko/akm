@@ -23,28 +23,34 @@
 
 <!--                </div>-->
 <!--</form>-->
-Ghbdtn я из сетингса
+Ghbdtn {{ profile.last_name }}
+<form method="post">{% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Update">
+</form>
+<!--        {% for item in acc %}-->
+<!--      {% if item.login == request.user %}-->
 
-        {% for item in acc %}
-      {% if item.login == request.user %}
+
+<!--    <div class="site-section bg-light">-->
+<!--      <div class="container">-->
+<!--        <div class="row">-->
+<!--          <div class="col-md-12 col-lg-8 mb-5">-->
+<!--            <div class="post-entry bg-white">-->
+<!--              <div class="image">-->
+<!--                <img src="/{{ item.image }}" alt="Image" class="img-fluid">-->
+<!--              </div>-->
+<!--                {{ profile.login }}-->
+<!--              <div class="text p-4">-->
+<!--                <h2 class="h5 text-black"><a href="{{ item.get_absolute_url }}">{{ item.last_name }} {{ item.first_name }}</a></h2>-->
+<!--                <span class="text-uppercase date d-block mb-3"><small>{{ item.name_role }} &bullet; {{ item.post }}</small></span>-->
+<!--                <p class="mb-0">{{ post.content|truncatewords:40|safe }}</p>-->
+<!--              </div>-->
+
+<!--            </div>-->
 
 
-    <div class="site-section bg-light">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12 col-lg-8 mb-5">
-            <div class="post-entry bg-white">
-              <div class="image">
-                <img src="/{{ item.image }}" alt="Image" class="img-fluid">
-              </div>
-                {{ profile.login }}
-              <div class="text p-4">
-                <h2 class="h5 text-black"><a href="{{ item.get_absolute_url }}">{{ item.last_name }} {{ item.first_name }}</a></h2>
-                <span class="text-uppercase date d-block mb-3"><small>{{ item.name_role }} &bullet; {{ item.post }}</small></span>
-                <p class="mb-0">{{ post.content|truncatewords:40|safe }}</p>
-              </div>
 
-            </div>
 <!--           <form action="#" class="p-5 bg-white" method="post">-->
 <!--            {% csrf_token %}-->
 <!--            {{ error_form }}-->
