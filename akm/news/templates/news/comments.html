@@ -1,0 +1,44 @@
+{% load static %}
+<!-- Comments -->
+					<div class="news_post_comments">
+						<div class="comments_title">Комментарии</div>
+						<ul class="comments_list">
+
+							<!-- Comment -->
+							<li class="comment">
+								<div class="comment_container d-flex flex-row">
+									<div>
+										<div class="comment_image">
+											<img src="images/comment_1.jpg" alt="">
+										</div>
+									</div>
+									<div class="comment_content">
+										<div class="comment_meta">
+											<span class="comment_name"><a href="#">Mark Smith</a></span>
+											<span class="comment_separator">|</span>
+											<span class="comment_date">Dec 18, 2017</span>
+											<span class="comment_separator">|</span>
+											<span class="comment_reply_link"><a href="#">Reply</a></span>
+										</div>
+										<p class="comment_text">Aliquam rhoncus, purus in vehicula porttitor, lacus ante consequat purus, id elementum enim purus nec enim. In sed odio rhoncus, tristique ipsum id, pharetra neque. </p>
+									</div>
+								</div>
+							</li>
+
+
+					<!-- Leave Comment -->
+
+					<div class="leave_comment">
+						<div class="leave_comment_title">Leave a comment</div>
+
+						<div class="leave_comment_form_container">
+							<form action=#>
+								<input id="comment_form_name" class="input_field contact_form_name" type="text" placeholder="Name" required="required" data-error="Name is required.">
+								<input id="comment_form_email" class="input_field contact_form_email" type="email" placeholder="E-mail" required="required" data-error="Valid email is required.">
+								<textarea id="comment_form_message" class="text_field contact_form_message" name="message" placeholder="Message" required="required" data-error="Please, write us a message."></textarea>
+								<button id="comment_send_btn" type="submit" class="comment_send_btn trans_200" value="Submit">send message</button>
+							</form>
+						</div>
+					</div>
+
+				</div>

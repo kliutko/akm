@@ -32,9 +32,9 @@ class NewsAdmin(admin.ModelAdmin):
 
     get_html_photo.short_description = 'миниатюра'
 class NewsCommentsAdmin(admin.ModelAdmin):
-    list_display = ('name_news','avtor_comm', 'time_create_com', 'comment')
+    list_display = ('name_news', 'time_create_com', 'comment')
     list_display_links = ('name_news',)
-    search_fields = ('name_news', 'avtor_comm')
+    search_fields = ('name_news', )
     list_filter = ('time_create_com',)  # фильтрация
 
 admin.site.register(News_category, NewsCategotyAdmin)

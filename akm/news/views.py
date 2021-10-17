@@ -1,11 +1,13 @@
 from urllib import request
+
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import redirect
+from django.views.decorators.http import require_http_methods
+
 from .models import *
-from django.template import RequestContext
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView
-
-
-
+from .forms import *
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
 
@@ -16,6 +18,7 @@ from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
 def news(request):
     '''Show all news'''
+
     news_list = News.objects.filter(is_published=True).order_by('-time_create')
     paginator = Paginator(news_list, 3)
     page = request.GET.get('page')
@@ -27,6 +30,7 @@ def news(request):
         news = paginator.page(paginator.num_pages)
     data = {
         'news': news,
+
         'ids_news': '2',  # id for displaying the news on the main page
         'name_site': 'Название сайта',
         'email_header': 'Почта',
@@ -62,13 +66,33 @@ def news(request):
     return render(request, 'news/news.html', data)
 
 
-
-def show_news(request, news_slug):
+@login_required
+@require_http_methods(["POST"])
+def show_news(request, news_slug, self=None):
     post = get_object_or_404(News, slug=news_slug)
+    comments = NewsComment.objects.filter()
+
+    error_form = ''
+    if request.method == 'POST':
+        form_coment = NewsCommentForms(request.POST)
+
+        if form_coment.is_valid():
+            response = form_coment.save(commit=False)
+            if __name__ == '__main__':
+                response.name_news = request.GET
+            response.user = request.user
+            response.save()
+        # return redirect(slug=news_slug, )
+    # else:
+    #     error_form = 'Введены неверные данные!'
+
+    form_coment = NewsCommentForms()
 
     data = {
         'post': post,
+        'form_coment': form_coment,
         'title': post.title,
+        'comments': comments,
         'ids_news': '2',  # id for displaying the news on the main page
         'name_site': 'Название сайта',
         'email_header': 'Почта',

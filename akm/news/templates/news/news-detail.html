@@ -1,4 +1,5 @@
 {% extends 'main/base.html' %}
+
 {% block title %}   {% endblock %}
 {% block content %}
 
@@ -13,28 +14,181 @@
       </div>
     </div>
 <!--block full news-->
-    <div class="site-section site-block-3 bg-light">
+ <div class="site-section bg-light">
       <div class="container">
-        <span class="align-self-center w-100">
+          <span class="align-self-center w-100">
           <h2><strong class="d-block">{{ post.title }}</strong> </h2>
         </span>
-        <h8>Опубликовано:{{ post.time_create }}</h8><br>
-        <div class="row align-items-stretch">
-                    <img src="{{ post.image.url }}" alt="Image" class="img-fluid" ><br><br>
-          <div class="col-lg-6 h-100">
-            <div class="row row-items">
-              <div class="col-md-6 mb-5 mb-md-0">
+        <div class="row">
+          <div class="col-md-12 col-lg-8 mb-5">
+            <div class="post-entry bg-white">
+
+              <div class="image">
+                <img src="{{ post.image.url }}" alt="Image" class="img-fluid">
               </div>
+                {{ profile.login }}
+              <div class="text p-4">
+                <span class="text-uppercase date d-block mb-3"><small>Опубликовано &bullet; {{ post.time_create }}</small></span>
+                <p class="mb-0">{{ post.content|linebreaks }}</p>
+              </div>
+
+            </div>
+<!--/block full news-->
+<!--send comments-->
+              <br>
+            <form action="#" class="p-5 bg-white" method="post">
+            {% csrf_token %}
+            {{ error_form }}
+              <div class="row form-group">
+                <div class="col-md-12 mb-3 mb-md-0">
+                  {% for item in form_coment %}
+
+                  <label class="font-weight-bold" >{{ item.label }}</label>
+                  {{ item }}
+                  {% endfor %}
+                </div>
+              </div>
+
+
+              <div class="row form-group">
+                <div class="col-md-12">
+
+                  <input type="submit" value="Отправить" class="btn btn-primary">
+                </div>
+              </div>
+
+
+            </form>
+
+<!--/send comments-->
+<!--block comments              -->
+              <br>
+              {% for ct in comments %}
+
+              <div class="p-4">
+            <div class="block-47 d-flex">
+<!--              <div class="block-47-image d-none d-sm-block">-->
+<!--                <img src="{{ item.avatar }}" alt="Image placeholder" class="img-fluid">-->
+<!--              </div>-->
+              <blockquote class="block-47-quote">
+                <p>{{ ct.comment }}</p>
+                <cite class="block-47-quote-author">Комментарий оставил &mdash; {{ ct.avtor_comm }}</a></cite>
+              </blockquote>
+            </div>
+          </div>
+            {% endfor %}
+
+<!--/block comments              -->
+
+<!--           <form action="#" class="p-5 bg-white" method="post">-->
+<!--            {% csrf_token %}-->
+<!--            {{ error_form }}-->
+
+
+<!--              <div class="row form-group">-->
+<!--                <div class="col-md-12 mb-3 mb-md-0">-->
+
+
+<!--                      {% for item in serviceform %}<br>-->
+<!--                      <label class="font-weight-bold" >{{ item.label }}</label>-->
+<!--                      <br>{{ item }}-->
+<!--                      {% endfor %}-->
+<!--                </div>-->
+<!--              </div>-->
+<!--              <div class="row form-group">-->
+<!--                <div class="col-md-12">-->
+<!--                  <input type="submit" value="Отправить" class="btn btn-primary">-->
+<!--                </div>-->
+<!--              </div>-->
+<!--            </form>-->
+              <br>
+
+
+
+          </div>
+
+          <div class="col-lg-4">
+            <div class="p-4 mb-3 bg-white">
+
+              <h3 class="h5 text-black mb-3">{{ item.last_name }} {{ item.first_name }}</h3>
+              <p class="mb-0 font-weight-bold">{{ item.tel }}</p>
+                {{ item.login }}
+                {{ user.User }}
+
+
+              <p class="mb-4">{{ subtitle_1_block_right }}</p>
+
+              <p class="mb-0 font-weight-bold">{{ title_2_block_right }}</p>
+              <p class="mb-4"><a href="#">{{ subtitle_2_block_right }}</a></p>
+
+              <p class="mb-0 font-weight-bold">{{ title_3_block_right }}</p>
+              <p class="mb-0"><a href="#">{{ subtitle_3_block_right }}</a></p>
+
+            </div>
+
+
+            <div class="p-4 mb-3 bg-white">
+              <h3 class="h5 text-black mb-3">{{ title_block_2 }}</h3>
+              <p>{{ subtitle_block_2 }}</p>
+              <p><a href="{% url 'update' %}" class="btn btn-primary px-4 py-2 text-white">Редактировать профиль</a></p>
             </div>
           </div>
         </div>
-          {{ post.content|linebreaks }}
       </div>
     </div>
-<!--/block full news-->
+
+<!--end-->
 
 
 
+
+
+<!-- Comments -->
+					<div class="news_post_comments">
+						<div class="comments_title">Комментарии</div>
+						<ul class="comments_list">
+
+							<!-- Comment -->
+							<li class="comment">
+								<div class="comment_container d-flex flex-row">
+									<div>
+										<div class="comment_image">
+											<img src="images/comment_1.jpg" alt="">
+										</div>
+									</div>
+									<div class="comment_content">
+										<div class="comment_meta">
+											<span class="comment_name"><a href="#">Mark Smith</a></span>
+											<span class="comment_separator">|</span>
+											<span class="comment_date">Dec 18, 2017</span>
+											<span class="comment_separator">|</span>
+											<span class="comment_reply_link"><a href="#">Reply</a></span>
+										</div>
+										<p class="comment_text">Aliquam rhoncus, purus in vehicula porttitor, lacus ante consequat purus, id elementum enim purus nec enim. In sed odio rhoncus, tristique ipsum id, pharetra neque. </p>
+									</div>
+								</div>
+							</li>
+
+
+					<!-- Leave Comment -->
+
+					<div class="leave_comment">
+						<div class="leave_comment_title">Leave a comment</div>
+
+						<div class="leave_comment_form_container">
+							<form action=#>
+								<input id="comment_form_name" class="input_field contact_form_name" type="text" placeholder="Name" required="required" data-error="Name is required.">
+								<input id="comment_form_email" class="input_field contact_form_email" type="email" placeholder="E-mail" required="required" data-error="Valid email is required.">
+								<textarea id="comment_form_message" class="text_field contact_form_message" name="message" placeholder="Message" required="required" data-error="Please, write us a message."></textarea>
+								<button id="comment_send_btn" type="submit" class="comment_send_btn trans_200" value="Submit">send message</button>
+							</form>
+						</div>
+					</div>
+
+				</div>
+
+
+{% include 'news/comments.html' %}
 
 
 
