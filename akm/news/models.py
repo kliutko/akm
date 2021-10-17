@@ -65,12 +65,13 @@ class News(models.Model):
 
 class NewsComment(models.Model):
     name_news = models.ForeignKey('News', verbose_name='Новость', on_delete=models.PROTECT)
+    avtor_comm = models.ForeignKey('auth.User',null=True, blank=True, verbose_name='Автор', on_delete=models.PROTECT)
     comment = models.TextField('Текст комментария',null=True, blank=True)
-    time_create = models.DateTimeField('Дата публикации', auto_now_add=True)
+    time_create_com = models.DateTimeField('Дата публикации', auto_now_add=True)
 
     class Meta:
         verbose_name = 'Коментарий'
         verbose_name_plural = 'Коментарии'
-        ordering = ['time_create', 'name_news']
+
     def __str__(self):
-        return self.name_news
+        return f'Автор: {self.avtor_comm} Новость: {self.name_news}    Комментарий: {self.comment}'
