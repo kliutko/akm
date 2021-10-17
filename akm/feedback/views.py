@@ -1,15 +1,14 @@
-from django.contrib.sites import requests
-from django.shortcuts import render
 from django.shortcuts import redirect
+from django.shortcuts import render
+import requests
 from .forms import *
 
-from .models import *
 
 # Create your views here.
 def send_telegram(text: str):
-    token = '2018618673:AAFeAMB9pYqGNAOZpwhd57MsYvtSe_byLWQ'
+    token = '2018618673:AAFeAMB9pYqGNAOZpwhd57MsYvtSe_byLWQ' # token
     url = 'https://api.telegram.org/bot'
-    channel_id = '-586479976'
+    channel_id = '-586479976'  # id группы
     url += token
     method = url + '/sendmessage'
 
@@ -20,7 +19,6 @@ def send_telegram(text: str):
     if r.status_code != 200:
         raise Exception('Post_text_error')
 
-
 if __name__ == '__main__':
     send_telegram('hello world')
 
@@ -29,13 +27,14 @@ def feedback(request):
     if request.method == 'POST':
         form = FeedbackForm(request.POST)
         if form.is_valid():
+            # Формируем сообщение
+            text = f'Сообщение отправлено из формы обратной связи:' \
+                   f'Имя:{request.POST["name"]}\nEmail:{request.POST["email"]}\n{request.POST["message"]}\n{request.POST["time_create"]}'
             form.save()
-
-
+            send_telegram(text) # Передаем сообщение в sendmessage
             return redirect('feedback')
         else:
             error_form = 'Введены неверные данные!'
-
 
     form = FeedbackForm()
     data = {
@@ -75,30 +74,27 @@ def feedback(request):
         'block_0_adres_subtitle_3': '',
         'block_0_adres_subtitle_4': '',  # /footer
 
-
-        'header_block_right': 'Контактная информация',    #block string fadback right
+        'header_block_right': 'Контактная информация',  # block string fadback right
         'title_1_block_right': 'Адрес:',
         'subtitle_1_block_right': '203 Fake St.Mountain View, San Francisco, California, USA',
         'title_2_block_right': 'Телефон',
         'subtitle_2_block_right': '+375 29 3579512',
-         'title_3_block_right': 'Email',
-        'subtitle_3_block_right': 'Email@domain.by',         #/block string fadback right
+        'title_3_block_right': 'Email',
+        'subtitle_3_block_right': 'Email@domain.by',  # /block string fadback right
 
-        'title_block_2':'Заголовок',    #block2 in feedback
+        'title_block_2': 'Заголовок',  # block2 in feedback
         'subtitle_block_2': 'текст текст текст текст текст текст текст текст текст текст текст ',
         'btn_block_2': 'Перейти ',
-        'url_block_2': '#',   #/block2 in feedback
-        'feedbackmap1': 'Визит в офис',         #block visitinoffice
+        'url_block_2': '#',  # /block2 in feedback
+        'feedbackmap1': 'Визит в офис',  # block visitinoffice
 
-        }
+    }
 
     return render(request, 'feedback/contact.html', data)
 
 
-
 def feedbackmap(request):
     data = {
-
 
         'ids_news': '2',  # id for displaying the news on the main page
         'name_site': 'Название сайта',
@@ -132,22 +128,22 @@ def feedbackmap(request):
         'block_0_adres_subtitle_3': '',
         'block_0_adres_subtitle_4': '',  # /footer
 
-
-        'header_block_right': 'Контактная информация',    #block string fadback right
+        'header_block_right': 'Контактная информация',  # block string fadback right
         'title_1_block_right': 'Адрес:',
         'subtitle_1_block_right': '203 Fake St.Mountain View, San Francisco, California, USA',
         'title_2_block_right': 'Телефон',
         'subtitle_2_block_right': '+375 29 3579512',
-         'title_3_block_right': 'Email',
-        'subtitle_3_block_right': 'Email@domain.by',         #/block string fadback right
+        'title_3_block_right': 'Email',
+        'subtitle_3_block_right': 'Email@domain.by',  # /block string fadback right
 
-        'title_block_2':'Заголовок',    #block2 in feedback
+        'title_block_2': 'Заголовок',  # block2 in feedback
         'subtitle_block_2': 'текст текст текст текст текст текст текст текст текст текст текст ',
         'btn_block_2': 'Перейти ',
-        'url_block_2': '#',   #/block2 in feedback
+        'url_block_2': '#',  # /block2 in feedback
 
-
-
-        }
+    }
     return render(request, 'feedback/map.html', data)
+
+
+
 
