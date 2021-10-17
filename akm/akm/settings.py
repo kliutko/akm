@@ -40,7 +40,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'phonenumber_field',
     'main',
-    'telebot.apps.TelebotConfig',
     'about.apps.AboutConfig',
     'news.apps.NewsConfig',
     'feedback',
