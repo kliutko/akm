@@ -28,8 +28,8 @@ def feedback(request):
         form = FeedbackForm(request.POST)
         if form.is_valid():
             # Формируем сообщение
-            text = f'Сообщение отправлено из формы обратной связи:' \
-                   f'Имя:{request.POST["name"]}\nEmail:{request.POST["email"]}\n{request.POST["message"]}\n{request.POST["time_create"]}'
+            text = f'Сообщение отправлено из формы обратной связи с сайта :\n' \
+                   f'Имя: {request.POST["name"]}\nEmail: {request.POST["email"]}\nСообщение:\n{request.POST["message"]}'
             form.save()
             send_telegram(text) # Передаем сообщение в sendmessage
             return redirect('feedback')
@@ -95,7 +95,6 @@ def feedback(request):
 
 def feedbackmap(request):
     data = {
-
         'ids_news': '2',  # id for displaying the news on the main page
         'name_site': 'Название сайта',
         'email_header': 'Почта',
@@ -111,7 +110,6 @@ def feedbackmap(request):
         'link_button_1': '#',
         'text_button_2': 'GetInTouch',
         'link_button_2': '#',
-
         'title_feedback': 'Карта',  # title header string news
         'subtitle_feedback': '',  # title header string news
         'footer_copyright': 'Copyright © 2021 All Rights Reserved',  # footer

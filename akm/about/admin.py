@@ -14,11 +14,11 @@ class Category_PortfolioAdmin(admin.ModelAdmin):
 
 
 class PortfolioAdmin(admin.ModelAdmin):
-    list_display = ('id', 'post', 'lname', 'fname', 'get_html_photo', 'tel', 'email', 'is_jobs')
+    list_display = ('get_html_photo', 'lname', 'fname', 'tel', 'email', 'post', 'is_jobs','id')
     list_display_links = ('lname', 'fname')
     search_fields = ('lname', 'fname')
     prepopulated_fields = {'slug': ('fname',)}
-    list_editable = ('is_jobs',)  # редоктируемое поле
+    list_editable = ('post', 'is_jobs')  # редоктируемое поле
     list_filter = ('post', 'is_jobs')  # фильтрация
     #fields = ('post', 'lname', 'fname', 'avatar', 'tel', 'email', 'is_jobs') # список выводимых редактируемых полей
     #readonly_fields = () поля только для чтения

@@ -39,3 +39,38 @@ class News(models.Model):
 
     def get_absolute_url(self):
         return reverse('news', kwargs={'news_slug': self.slug})
+
+    class News(models.Model):
+        name_category = models.ForeignKey('News_category', verbose_name='Категория', on_delete=models.PROTECT)
+        title = models.CharField('Заголовок', max_length=200)
+        content = models.TextField('Текст', blank=True)
+        image = models.ImageField('Картинка', upload_to='static/images/%Y/%m/%d/')
+        time_create = models.DateTimeField('Дата публикации', auto_now_add=True)
+        time_update = models.DateTimeField('Дата последнего изменения', auto_now=True)
+        is_published = models.BooleanField(verbose_name='Опубликовано', default=True)
+        slug = models.SlugField(verbose_name='URL', unique=True, db_index=True, max_length=220)
+
+        class Meta:
+            verbose_name = 'Новость'
+            verbose_name_plural = 'Новости'
+            ordering = ['time_create', 'title']
+
+        def __str__(self):
+            return self.title
+
+        def get_absolute_url(self):
+            return reverse('news', kwargs={'news_slug': self.slug})
+
+
+
+class NewsComment(models.Model):
+    name_news = models.ForeignKey('News', verbose_name='Новость', on_delete=models.PROTECT)
+    comment = models.TextField('Текст комментария',null=True, blank=True)
+    time_create = models.DateTimeField('Дата публикации', auto_now_add=True)
+
+    class Meta:
+        verbose_name = 'Коментарий'
+        verbose_name_plural = 'Коментарии'
+        ordering = ['time_create', 'name_news']
+    def __str__(self):
+        return self.name_news
