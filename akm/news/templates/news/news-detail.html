@@ -36,33 +36,34 @@
 <!--/block full news-->
 <!--send comments-->
               <br>
+              {% if request.user.is_authenticated %}
             <form action="#" class="p-5 bg-white" method="post">
             {% csrf_token %}
             {{ error_form }}
               <div class="row form-group">
                 <div class="col-md-12 mb-3 mb-md-0">
                   {% for item in form_coment %}
-
                   <label class="font-weight-bold" >{{ item.label }}</label>
                   {{ item }}
                   {% endfor %}
                 </div>
               </div>
-
-
               <div class="row form-group">
                 <div class="col-md-12">
-
                   <input type="submit" value="Отправить" class="btn btn-primary">
                 </div>
               </div>
-
-
             </form>
+              {% else %}
+              <h6><span class="text-uppercase date d-block mb-3"><small>Комментарии могут оставлять только<a href="{% url 'register' %}"> зарегистрированные </a> пользователи.  <a href="{% url 'login' %}">Войти</a></small></span></h6>
+
+              {% endif %}
 
 <!--/send comments-->
 <!--block comments              -->
               <br>
+              <h4><span class="text-uppercase date d-block mb-3"><small>Комментарии:</small></span></h4>
+
               {% for ct in comments %}
 
               <div class="p-4">
@@ -73,6 +74,8 @@
               <blockquote class="block-47-quote">
                 <p>{{ ct.comment }}</p>
                 <cite class="block-47-quote-author">Комментарий оставил &mdash; {{ ct.autor_comm }}</a></cite>
+                  <br>
+                  <cite class="block-47-quote-author">Дата комментария &mdash; {{ ct.time_create_com }}</a></cite>
               </blockquote>
             </div>
           </div>
