@@ -2,17 +2,56 @@
 {% block content %}
 
 
-<form method="post">
-    {% csrf_token %}
-<div class="form-error">{{ form.non_field_errors }}</div>
-    {% for f in form %}
-    <p><label class="font-weight-bold" for="{{ f.id_for_label }}">{{ f.label }}:</label>{{ f }} </p>
-    <div class="form-error">{{ f.errors }}</div>
-    {% endfor %}
+<!--login-->
+<div class="site-section bg-light">
+      <div class="container" align="center">
+        <div class="row">
+          <div class="col-md-12 col-lg-8 mb-5">
+            <form action="#" class="p-5 bg-white" method="post">
+                <h3><span class="text-uppercase date d-block mb-3"><small>Форма входа</small></span></h3>
+            {% csrf_token %}
+            {{ error_form }}
+              <div class="row form-group">
+                <div class="col-md-12 mb-3 mb-md-0">
+                  {% for item in form %}
+                  <label class="font-weight-bold" >{{ item.label }}</label><br>
+                  {{ item }}<br>
+                  {% endfor %}
+                </div>
+              </div>
+              <div class="row form-group">
+                <div class="col-md-12">
+                  <input type="submit" value="Отправить" class="btn btn-primary">
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="col-lg-4">
+              <!--                block right one-->
+            <div class="p-4 mb-3 bg-white">
 
+              <h3 class="h5 text-black mb-3">{{ header_block_right }}</h3>
+              <p class="mb-0 font-weight-bold">{{ title_1_block_right }}</p>
+              <p class="mb-4">{{ subtitle_1_block_right }}</p>
+              <p class="mb-0 font-weight-bold">{{ title_2_block_right }}</p>
+              <p class="mb-4"><a href="#">{{ subtitle_2_block_right }}</a></p>
+              <p class="mb-0 font-weight-bold">{{ title_3_block_right }}</p>
+              <p class="mb-0"><a href="#">{{ subtitle_3_block_right }}</a></p>
+            </div>
+              <!--                block right two-->
+            <div class="p-4 mb-3 bg-white">
+              <h3 class="h5 text-black mb-3">{{ title_block_2 }}</h3>
+              <p>{{ subtitle_block_2 }}</p>
+              <p><a href="{{ url_block_2 }}" class="btn btn-primary px-4 py-2 text-white">{{ btn_block_2 }}</a></p>
+            </div>
+              <!--                block right two-->
 
-    <button type="submit">Войти</button>
-</form>
+          </div>
+        </div>
+      </div>
+    </div>
+<!--/login-->
+
 
 
 {% endblock %}

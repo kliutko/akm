@@ -13,10 +13,10 @@ from django.forms import ModelForm
 #         fields = ['name', 'email', 'message', 'city']
 
 class RegisterUserForm(UserCreationForm):
-    username = forms.CharField(label='login', widget=forms.TextInput(attrs={'class': 'font-weight-bold'}))
-    email = forms.EmailField(label='Email', widget=forms.EmailInput(attrs={'class': 'font-weight-bold'}))
-    password1 = forms.CharField(label='password', widget=forms.PasswordInput(attrs={'class': 'font-weight-bold'}))
-    password2 = forms.CharField(label='password2', widget=forms.PasswordInput(attrs={'class': 'font-weight-bold'}))
+    username = forms.CharField(label='Логин:', widget=forms.TextInput(attrs={'class': 'font-weight-bold'}))
+    email = forms.EmailField(label='Email:', widget=forms.EmailInput(attrs={'class': 'font-weight-bold'}))
+    password1 = forms.CharField(label='Пароль:', widget=forms.PasswordInput(attrs={'class': 'font-weight-bold'}))
+    password2 = forms.CharField(label='Повтор пароля:', widget=forms.PasswordInput(attrs={'class': 'font-weight-bold'}))
 
     class Meta:
         model = User
@@ -24,7 +24,7 @@ class RegisterUserForm(UserCreationForm):
 
 
 class LoginUserForm(AuthenticationForm):
-    username = forms.CharField(label='login', widget=forms.TextInput(attrs={'class': 'font-weight-bold'}))
-    password = forms.CharField(label='password', widget=forms.PasswordInput(attrs={'class': 'font-weight-bold'}))
+    username = forms.CharField(label='Логин:', widget=forms.TextInput(attrs={'class': 'font-weight-bold'}))
+    password = forms.CharField(label='Пароль:', widget=forms.PasswordInput(attrs={'class': 'font-weight-bold'}))
 
 
