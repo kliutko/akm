@@ -3,6 +3,7 @@ from django.utils.safestring import mark_safe
 
 from .models import *
 
+
 # Register your models here.
 class NewsCategotyAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('title_category', )}
@@ -29,12 +30,12 @@ class NewsAdmin(admin.ModelAdmin):
     def get_html_photo(self, object):
         if object.image:
             return mark_safe(f"<img src='{object.image.url}' width=50>")
-
     get_html_photo.short_description = 'миниатюра'
+
 class NewsCommentsAdmin(admin.ModelAdmin):
-    list_display = ('name_news', 'time_create_com', 'comment')
-    list_display_links = ('name_news',)
-    search_fields = ('name_news', )
+    list_display = ('name_news', 'autor_comm', 'comment', 'time_create_com')
+    list_display_links = ('name_news', 'autor_comm')
+    search_fields = ('name_news', 'autor_comm')
     list_filter = ('time_create_com',)  # фильтрация
 
 admin.site.register(News_category, NewsCategotyAdmin)
