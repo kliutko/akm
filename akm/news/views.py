@@ -66,33 +66,31 @@ def news(request):
     return render(request, 'news/news.html', data)
 
 
-@login_required
-@require_http_methods(["POST"])
-def show_news(request, news_slug, self=None):
+# @login_required
+# @require_http_methods(["POST"])
+def show_news(request, news_slug):
     post = get_object_or_404(News, slug=news_slug)
-    comments = NewsComment.objects.filter()
-
+    comments = NewsComment.objects.filter(name_news = post)
     error_form = ''
     if request.method == 'POST':
-        form_coment = NewsCommentForms(request.POST)
+        form = NewsCommentForms(request.POST)
+        if form.is_valid():
+            form_comment = form.save(commit=False)
+            form_comment.autor_comm = request.user
+            form_comment.name_news = post
+            form_comment.save()
+        # return redirect('show_news')
+        else:
+            error_form = 'Введены неверные данные!'
 
-        if form_coment.is_valid():
-            response = form_coment.save(commit=False)
-            if __name__ == '__main__':
-                response.name_news = request.GET
-            response.user = request.user
-            response.save()
-        # return redirect(slug=news_slug, )
-    # else:
-    #     error_form = 'Введены неверные данные!'
-
-    form_coment = NewsCommentForms()
+    form_comment = NewsCommentForms()
 
     data = {
         'post': post,
-        'form_coment': form_coment,
+        'form_coment': form_comment,
         'title': post.title,
         'comments': comments,
+        'error_form': error_form,
         'ids_news': '2',  # id for displaying the news on the main page
         'name_site': 'Название сайта',
         'email_header': 'Почта',

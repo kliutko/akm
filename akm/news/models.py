@@ -47,8 +47,8 @@ class News(models.Model):
 
 
 class NewsComment(models.Model):
-    name_news = models.ForeignKey('News', verbose_name='Новость', on_delete=models.PROTECT, null=True, blank=True)
-    # autor_comm = models.ForeignKey('auth.User',null=True, blank=True, verbose_name='Автор', on_delete=models.PROTECT)
+    name_news = models.ForeignKey('News', verbose_name='Новость', on_delete=models.PROTECT, blank=True)
+    autor_comm = models.ForeignKey('auth.User',null=True, blank=True, verbose_name='Автор', on_delete=models.PROTECT)
     comment = models.TextField('Текст комментария',null=True, blank=True)
     time_create_com = models.DateTimeField('Дата публикации', auto_now_add=True)
 
