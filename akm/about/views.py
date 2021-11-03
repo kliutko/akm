@@ -1,10 +1,18 @@
 from django.shortcuts import render, redirect, get_object_or_404
+
+from news.models import News_category
 from .models import *
+
+
 
 # Create your views here.
 def about(request):
     portfolio = Portfolio.objects.all()
+    cat = News_category.objects.all()
+
     data = {
+
+        'cat': cat,
         'portfolio': portfolio,
         'block_1_title': 'Мы предостовляем',     #block_1 uslugi
         'block_1_subtitle': 'услуги:',
@@ -60,8 +68,11 @@ def about(request):
 
 def show_portfolio(request, portfolio_slug):
     post = get_object_or_404(Portfolio, slug=portfolio_slug)
+    cat = News_category.objects.all()
 
     data = {
+
+        'cat': cat,
         'post': post,
 
         'ids_news': '2',  # id for displaying the news on the main page
@@ -108,7 +119,12 @@ def show_category_portfolio(request, category_slug):
     port = Portfolio.objects.filter(slug=category_slug)
     port1 = Portfolio.objects.all()
     cats = Category_Portfolio.objects.all()
+    cat = News_category.objects.all()
+
+
     data = {
+
+        'cat': cat,
         'port': port,
         'category': category,
         'cats': cats,

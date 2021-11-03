@@ -1,5 +1,4 @@
 from django.contrib.auth import logout, login
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.views import LoginView
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
@@ -7,8 +6,7 @@ from django.urls import reverse_lazy
 from .forms import *
 from news.models import *
 from about.models import *
-from .models import *
-from django.views.generic import DetailView, CreateView
+from django.views.generic import CreateView
 
 
 
@@ -28,10 +26,14 @@ def index(request):
     # specialty = Specialty.objects.all()
     #
     # form = FeedbackForm()
+    cat = News_category.objects.all()
+
 
     data = {
+
         # 'form' : form,
         # 'specialty': specialty,
+        'cat': cat,
 
         'news': news,
         'portfolio': portfolio,

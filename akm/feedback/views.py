@@ -1,6 +1,8 @@
 from django.shortcuts import redirect
 from django.shortcuts import render
 import requests
+
+from news.models import News_category
 from .forms import *
 
 
@@ -37,7 +39,11 @@ def feedback(request):
             error_form = 'Введены неверные данные!'
 
     form = FeedbackForm()
+    cat = News_category.objects.all()
+
     data = {
+
+        'cat': cat,
         'form': form,
         'error_form': error_form,
         'feedback': feedback,
@@ -94,7 +100,11 @@ def feedback(request):
 
 
 def feedbackmap(request):
+    cat = News_category.objects.all()
+
     data = {
+
+        'cat': cat,
         'ids_news': '2',  # id for displaying the news on the main page
         'name_site': 'Название сайта',
         'email_header': 'Почта',

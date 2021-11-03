@@ -8,6 +8,7 @@ class News_category(models.Model):
     title_category = models.CharField('Имя категории ', max_length=50, db_index=True, default='')
     subtitle_category = models.TextField('Описание категории', max_length=300, blank=True, default='')
     slug = models.SlugField(verbose_name='URL', unique=True, db_index=True)
+    objects = models.Manager()
 
     class Meta:
         verbose_name = 'Категория'

@@ -1,4 +1,6 @@
+
 {% load static %}
+
 <!DOCTYPE html>
 <html lang="ru">
 
@@ -113,8 +115,28 @@
 
 <!--                      </ul>-->
                     </li>
-                    <li><a href="{% url 'news' %}">Новости</a></li>
-<!--                    <li><a href="#">Services</a></li>-->
+
+
+                    <li class="has-children">
+                      <a href="{% url 'news' %}">Новости</a>
+                      <ul class="dropdown arrow-top">
+                        {% for item in cat %}
+                        <li><a href="/news/cat/{{ item.slug }}">{{ item.title_category }}</a></li>
+                        {% endfor %}
+<!--Подкатегория-->
+<!--                        <li class="has-children">-->
+<!--                          <a href="about/cat/">Сотрудники</a>-->
+<!--                          <ul class="dropdown">-->
+<!--                          {% for i in category_portfolio %}-->
+<!--                            <li><a href="about/cat/{{ i.slug }}">{{ i.name }}</a></li>-->
+<!--                          {% endfor %}-->
+<!--                        </ul>-->
+<!--                        </li>-->
+
+                      </ul>
+                    </li>
+
+
                     <li><a href="{% url 'feedback' %}">Обратная связь</a></li> ||
                     {% if request.user.is_authenticated %}
                     <li class="dropdown arrow-top"><a href="/account/{{ user.username }}">{{ user.username }}</a> | <a href="{% url 'logout' %}">Выйти</a></li>

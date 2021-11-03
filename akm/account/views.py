@@ -64,6 +64,11 @@ class AccountsUpdate(UpdateView):
 
 
     # data = {
+    # cat = News_category.objects.all()
+    #
+    # data = {
+    #
+    #     'cat': cat,
     #     'entityform': entityform,
     #     'subjectform': subjectform,
     #     'serviceform': serviceform,
