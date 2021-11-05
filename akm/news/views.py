@@ -4,11 +4,13 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect
 from django.views.decorators.http import require_http_methods
 
+import main
 from .models import *
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView
 from .forms import *
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+from main.models import *
 
 
 
@@ -29,43 +31,43 @@ def news(request):
     except EmptyPage:
         news = paginator.page(paginator.num_pages)
     cat = News_category.objects.all()
+    reklama = ReklamaPost.objects.filter(is_published=True)
 
     data = {
+        'reklama': reklama,
 
         'cat': cat,
         'news': news,
 
         'ids_news': '2',  # id for displaying the news on the main page
-        'name_site': 'Название сайта',
-        'email_header': 'Почта',
-        'phoneheader': 'Телефон',
-        'fb_url': 'Ссылка на facebook',
-        'tw_url': 'Ссылка на twitter',
-        'ld_url': 'Ссылка на linkedin',
-        'inst_url': 'Ссылка на instagram',
-        'title_main': 'Специальная технология',  # title in string main
-        'subtitle_main': 'Обработки металла',  # subtitle us string main
-        'image_header': '/static/images/hero_bg_2.jpg',  # image us main
-        'text_button_1': 'Download',
-        'link_button_1': '#',
-        'text_button_2': 'GetInTouch',
-        'link_button_2': '#',
-        'title_news': 'Наши', # title header string news
-        'subtitle_news': 'Новости',  # title header string news
-        'image_header': '/static/images/hero_bg_2.jpg',
-        'footer_copyright': 'Copyright © 2021 All Rights Reserved',  # footer
-        'blok_adress_title': 'Беларусь, Брестская область',
-        'block_adres_subtitle': 'Кобринский р-н, д. Пески-2',
-        'block_adres_subtitle_1': ' ул.Луговая 26',
-        'block_adres_subtitle_2': 'Tel. + 375(29) 112-76-32',
-        'block_adres_subtitle_3': 'tests@tests.com',
-        'block_adres_subtitle_4': 'УНП: 291052118',
-        'blok_0_adress_title': '',
-        'block_0_adres_subtitle': '',
-        'block_0_adres_subtitle_1': '',
-        'block_0_adres_subtitle_2': '',
-        'block_0_adres_subtitle_3': '',
-        'block_0_adres_subtitle_4': '',  # /footer
+        'name_site': main.mixdata.data['name_site'],
+        'email_header': main.mixdata.data['email_header'],
+        'phoneheader': main.mixdata.data['phoneheader'],
+        'tg_url': main.mixdata.data['tg_url'],  # social iconus header
+        'fb_url': main.mixdata.data['fb_url'],
+        'vk_url': main.mixdata.data['vk_url'],
+        'ld_url': main.mixdata.data['ld_url'],
+        'inst_url': main.mixdata.data['inst_url'],  # /social iconus header
+        'text_button_1_news': 'Download',
+        'link_button_1_news': '#',
+        'text_button_2_news': 'GetInTouch',
+        'link_button_2_news': '#',
+        'title_news': main.mixdata.data['title_news'], # title header string news
+        'subtitle_news': main.mixdata.data['subtitle_news'],  # title header string news
+        'image_header_news': main.mixdata.data['image_header_news'],
+        'footer_copyright': main.mixdata.data['footer_copyright'],  # footer
+        'blok_adress_title': main.mixdata.data['blok_adress_title'],
+        'block_adres_subtitle': main.mixdata.data['block_adres_subtitle'],
+        'block_adres_subtitle_1': main.mixdata.data['block_adres_subtitle_1'],
+        'block_adres_subtitle_2': main.mixdata.data['block_adres_subtitle_2'],
+        'block_adres_subtitle_3': main.mixdata.data['block_adres_subtitle_3'],
+        'block_adres_subtitle_4': main.mixdata.data['block_adres_subtitle_4'],
+        'blok_0_adress_title': main.mixdata.data['blok_0_adress_title'],
+        'block_0_adres_subtitle': main.mixdata.data['block_0_adres_subtitle'],
+        'block_0_adres_subtitle_1': main.mixdata.data['block_0_adres_subtitle_1'],
+        'block_0_adres_subtitle_2': main.mixdata.data['block_0_adres_subtitle_2'],
+        'block_0_adres_subtitle_3': main.mixdata.data['block_0_adres_subtitle_3'],
+        'block_0_adres_subtitle_4': main.mixdata.data['block_0_adres_subtitle_4'],  # /footer
     }
     return render(request, 'news/news.html', data)
 
@@ -101,38 +103,34 @@ def show_category(request, category_slug):
         # 'title': post.title,
         # 'content': post.content,
 
-
-        'ids_news': '2',  # id for displaying the news on the main page
-        'name_site': 'Название сайта',
-        'email_header': 'Почта',
-        'phoneheader': 'Телефон',
-        'fb_url': 'Ссылка на facebook',
-        'tw_url': 'Ссылка на twitter',
-        'ld_url': 'Ссылка на linkedin',
-        'inst_url': 'Ссылка на instagram',
-        'title_main': 'Специальная технология',  # title in string main
-        'subtitle_main': 'Обработки металла',  # subtitle us string main
-        'image_header': '/static/images/hero_bg_2.jpg',  # image us main
-        'text_button_1': 'Download',
-        'link_button_1': '#',
-        'text_button_2': 'GetInTouch',
-        'link_button_2': '#',
-        'title_news': 'Наши', # title header string news
-        'subtitle_news': 'Новости',  # title header string news
-        'image_header': '/static/images/hero_bg_2.jpg',
-        'footer_copyright': 'Copyright © 2021 All Rights Reserved',  # footer
-        'blok_adress_title': 'Беларусь, Брестская область',
-        'block_adres_subtitle': 'Кобринский р-н, д. Пески-2',
-        'block_adres_subtitle_1': ' ул.Луговая 26',
-        'block_adres_subtitle_2': 'Tel. + 375(29) 112-76-32',
-        'block_adres_subtitle_3': 'tests@tests.com',
-        'block_adres_subtitle_4': 'УНП: 291052118',
-        'blok_0_adress_title': '',
-        'block_0_adres_subtitle': '',
-        'block_0_adres_subtitle_1': '',
-        'block_0_adres_subtitle_2': '',
-        'block_0_adres_subtitle_3': '',
-        'block_0_adres_subtitle_4': '',  # /footer
+        'name_site': main.mixdata.data['name_site'],
+        'email_header': main.mixdata.data['email_header'],
+        'phoneheader': main.mixdata.data['phoneheader'],
+        'tg_url': main.mixdata.data['tg_url'],  # social iconus header
+        'fb_url': main.mixdata.data['fb_url'],
+        'vk_url': main.mixdata.data['vk_url'],
+        'ld_url': main.mixdata.data['ld_url'],
+        'inst_url': main.mixdata.data['inst_url'],  # /social iconus header
+        'text_button_1_news': 'Download',
+        'link_button_1_news': '#',
+        'text_button_2_news': 'GetInTouch',
+        'link_button_2_news': '#',
+        'title_news': main.mixdata.data['title_news'], # title header string news
+        'subtitle_news': main.mixdata.data['subtitle_news'],  # title header string news
+        'image_header_news': main.mixdata.data['image_header_news'],
+        'footer_copyright': main.mixdata.data['footer_copyright'],  # footer
+        'blok_adress_title': main.mixdata.data['blok_adress_title'],
+        'block_adres_subtitle': main.mixdata.data['block_adres_subtitle'],
+        'block_adres_subtitle_1': main.mixdata.data['block_adres_subtitle_1'],
+        'block_adres_subtitle_2': main.mixdata.data['block_adres_subtitle_2'],
+        'block_adres_subtitle_3': main.mixdata.data['block_adres_subtitle_3'],
+        'block_adres_subtitle_4': main.mixdata.data['block_adres_subtitle_4'],
+        'blok_0_adress_title': main.mixdata.data['blok_0_adress_title'],
+        'block_0_adres_subtitle': main.mixdata.data['block_0_adres_subtitle'],
+        'block_0_adres_subtitle_1': main.mixdata.data['block_0_adres_subtitle_1'],
+        'block_0_adres_subtitle_2': main.mixdata.data['block_0_adres_subtitle_2'],
+        'block_0_adres_subtitle_3': main.mixdata.data['block_0_adres_subtitle_3'],
+        'block_0_adres_subtitle_4': main.mixdata.data['block_0_adres_subtitle_4'],  # /footer
     }
     return render(request, 'news/news.html', data)
 
@@ -157,7 +155,10 @@ def show_news(request, news_slug):
     form_comment = NewsCommentForms()
     cat = News_category.objects.all()
 
+    reklama = ReklamaPost.objects.filter(is_published=True)
+
     data = {
+        'reklama': reklama,
 
         'cat': cat,
         'post': post,
@@ -165,37 +166,36 @@ def show_news(request, news_slug):
         'title': post.title,
         'comments': comments,
         'error_form': error_form,
-        'ids_news': '2',  # id for displaying the news on the main page
-        'name_site': 'Название сайта',
-        'email_header': 'Почта',
-        'phoneheader': 'Телефон',
-        'fb_url': 'Ссылка на facebook',
-        'tw_url': 'Ссылка на twitter',
-        'ld_url': 'Ссылка на linkedin',
-        'inst_url': 'Ссылка на instagram',
-        'title_main': 'Специальная технология',  # title in string main
-        'subtitle_main': 'Обработки металла',  # subtitle us string main
-        'image_header': '/static/images/hero_bg_2.jpg',  # image us main
-        'text_button_1': 'Download',
-        'link_button_1': '#',
-        'text_button_2': 'GetInTouch',
-        'link_button_2': '#',
-        'title_news': 'Наши',  # title header string news
-        'subtitle_news': 'Новости',  # title header string news
-        'image_header': '/static/images/hero_bg_2.jpg',
-        'footer_copyright': 'Copyright © 2021 All Rights Reserved',  # footer
-        'blok_adress_title': 'Беларусь, Брестская область',
-        'block_adres_subtitle': 'Кобринский р-н, д. Пески-2',
-        'block_adres_subtitle_1': ' ул.Луговая 26',
-        'block_adres_subtitle_2': 'Tel. + 375(29) 112-76-32',
-        'block_adres_subtitle_3': 'tests@tests.com',
-        'block_adres_subtitle_4': 'УНП: 291052118',
-        'blok_0_adress_title': '',
-        'block_0_adres_subtitle': '',
-        'block_0_adres_subtitle_1': '',
-        'block_0_adres_subtitle_2': '',
-        'block_0_adres_subtitle_3': '',
-        'block_0_adres_subtitle_4': '',  # /footer
+
+
+        'name_site': main.mixdata.data['name_site'],
+        'email_header': main.mixdata.data['email_header'],
+        'phoneheader': main.mixdata.data['phoneheader'],
+        'tg_url': main.mixdata.data['tg_url'],  # social iconus header
+        'fb_url': main.mixdata.data['fb_url'],
+        'vk_url': main.mixdata.data['vk_url'],
+        'ld_url': main.mixdata.data['ld_url'],
+        'inst_url': main.mixdata.data['inst_url'],  # /social iconus header
+        'text_button_1_news': 'Download',
+        'link_button_1_news': '#',
+        'text_button_2_news': 'GetInTouch',
+        'link_button_2_news': '#',
+        'title_news': main.mixdata.data['title_news'], # title header string news
+        'subtitle_news': main.mixdata.data['subtitle_news'],  # title header string news
+        'image_header_news': main.mixdata.data['image_header_news'],
+        'footer_copyright': main.mixdata.data['footer_copyright'],  # footer
+        'blok_adress_title': main.mixdata.data['blok_adress_title'],
+        'block_adres_subtitle': main.mixdata.data['block_adres_subtitle'],
+        'block_adres_subtitle_1': main.mixdata.data['block_adres_subtitle_1'],
+        'block_adres_subtitle_2': main.mixdata.data['block_adres_subtitle_2'],
+        'block_adres_subtitle_3': main.mixdata.data['block_adres_subtitle_3'],
+        'block_adres_subtitle_4': main.mixdata.data['block_adres_subtitle_4'],
+        'blok_0_adress_title': main.mixdata.data['blok_0_adress_title'],
+        'block_0_adres_subtitle': main.mixdata.data['block_0_adres_subtitle'],
+        'block_0_adres_subtitle_1': main.mixdata.data['block_0_adres_subtitle_1'],
+        'block_0_adres_subtitle_2': main.mixdata.data['block_0_adres_subtitle_2'],
+        'block_0_adres_subtitle_3': main.mixdata.data['block_0_adres_subtitle_3'],
+        'block_0_adres_subtitle_4': main.mixdata.data['block_0_adres_subtitle_4'],  # /footer
 
     }
     return render(request, 'news/news-detail.html', data)

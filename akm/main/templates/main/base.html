@@ -47,11 +47,11 @@
         <div class="container py-2">
           <div class="row align-items-center">
             <div class="col-6">
-              <a href="{{ tg_url }}" class="p-2 pl-0"><span class="icon-telegram"></span></a>
-              <a href="{{ fb_url }}" class="p-2 pl-0"><span class="icon-facebook"></span></a>
-              <a href="{{ vk_url }}" class="p-2 pl-0"><span class="icon-vk"></span></a>
-              <a href="{{ ld_url }}" class="p-2 pl-0"><span class="icon-linkedin"></span></a>
-              <a href="{{ inst_url }}" class="p-2 pl-0"><span class="icon-instagram"></span></a>
+              <a target="_blank" href="{{ tg_url }}" class="p-2 pl-0"><span class="icon-telegram" ></span></a>
+              <a target="_blank" href="{{ fb_url }}" class="p-2 pl-0"><span class="icon-facebook"></span></a>
+              <a target="_blank" href="{{ vk_url }}" class="p-2 pl-0"><span class="icon-vk"></span></a>
+              <a target="_blank" href="{{ ld_url }}" class="p-2 pl-0"><span class="icon-linkedin"></span></a>
+              <a target="_blank" href="{{ inst_url }}" class="p-2 pl-0"><span class="icon-instagram"></span></a>
             </div>
             <div class="col-6">
               <div class="d-flex ml-auto">
@@ -97,8 +97,8 @@
                         </li>
                       </ul>
                     </li>
-                    <li class="has-children">
-                      <a href="{% url 'about' %}">О компании</a>
+<!--                    <li class="has-children">-->
+<!--                      <a href="{% url 'about' %}">О компании</a>-->
 <!--                      <ul class="dropdown arrow-top">-->
 <!--                        <li><a href="#">Menu One</a></li>-->
 <!--                        <li><a href="#">Menu Two</a></li>-->
@@ -114,7 +114,7 @@
 <!--                        </li>-->
 
 <!--                      </ul>-->
-                    </li>
+<!--                    </li>-->
 
 
                     <li class="has-children">
@@ -135,6 +135,7 @@
 
                       </ul>
                     </li>
+                    <li><a href="{% url 'about' %}">О нас</a></li>
 
 
                     <li><a href="{% url 'feedback' %}">Обратная связь</a></li> ||
@@ -168,14 +169,14 @@
           <div class="col-lg-7">
             <div class="row">
               <div class="col-6 col-md-4 col-lg-4 mb-5 mb-lg-0">
-                <h3 class="footer-heading mb-4">Company</h3>
+                <h3 class="footer-heading mb-4">Компания</h3>
                 <ul class="list-unstyled">
-                  <li><a href="#">About</a></li>
-                  <li><a href="#">Services</a></li>
-                  <li><a href="#">Approach</a></li>
-                  <li><a href="#">Sustainability</a></li>
-                  <li><a href="#">News</a></li>
-                  <li><a href="#">Careers</a></li>
+                  <li><a href="{% url 'about' %}">О нас</a></li>
+                  <li><a href="{% url 'feedback' %}">Обратная связь</a></li>
+                  <li><a href="#">Наши работы</a></li>
+                  <li><a href="{% url 'news' %}">Новости</a></li>
+                  <li><a href="#">Карьера</a></li>
+                  <li><a href="{% url 'feedback' %}map/">Карта</a></li>
                 </ul>
               </div>
               <div class="col-6 col-md-4 col-lg-4 mb-5 mb-lg-0">
